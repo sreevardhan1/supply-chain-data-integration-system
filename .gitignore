@@ -1,0 +1,18 @@
+# Virtual Environment
+.venv/
+
+# Environment Variables
+.env
+
+# GCP Credentials
+config/gcp_credentials.json
+
+# Python Cache
+__pycache__/*.pyc
+
+# Logs
+logs/
+
+
+# Ignoring Documentation Folders
+Proj_Docs/*.docx

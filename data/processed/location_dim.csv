@@ -1,0 +1,605 @@
+location_key,country,state,city,region
+1,United States,Alabama,Auburn,South
+2,United States,Alabama,Decatur,South
+3,United States,Alabama,Florence,South
+4,United States,Alabama,Hoover,South
+5,United States,Alabama,Huntsville,South
+6,United States,Alabama,Mobile,South
+7,United States,Alabama,Montgomery,South
+8,United States,Alabama,Tuscaloosa,South
+9,United States,Arizona,Avondale,West
+10,United States,Arizona,Bullhead City,West
+11,United States,Arizona,Chandler,West
+12,United States,Arizona,Gilbert,West
+13,United States,Arizona,Glendale,West
+14,United States,Arizona,Mesa,West
+15,United States,Arizona,Peoria,West
+16,United States,Arizona,Phoenix,West
+17,United States,Arizona,Scottsdale,West
+18,United States,Arizona,Sierra Vista,West
+19,United States,Arizona,Tempe,West
+20,United States,Arizona,Tucson,West
+21,United States,Arizona,Yuma,West
+22,United States,Arkansas,Conway,South
+23,United States,Arkansas,Fayetteville,South
+24,United States,Arkansas,Hot Springs,South
+25,United States,Arkansas,Jonesboro,South
+26,United States,Arkansas,Little Rock,South
+27,United States,Arkansas,Pine Bluff,South
+28,United States,Arkansas,Rogers,South
+29,United States,Arkansas,Springdale,South
+30,United States,Arkansas,Texarkana,South
+31,United States,California,Anaheim,West
+32,United States,California,Antioch,West
+33,United States,California,Apple Valley,West
+34,United States,California,Bakersfield,West
+35,United States,California,Brentwood,West
+36,United States,California,Burbank,West
+37,United States,California,Camarillo,West
+38,United States,California,Chico,West
+39,United States,California,Chula Vista,West
+40,United States,California,Citrus Heights,West
+41,United States,California,Coachella,West
+42,United States,California,Concord,West
+43,United States,California,Costa Mesa,West
+44,United States,California,Danville,West
+45,United States,California,Davis,West
+46,United States,California,Dublin,West
+47,United States,California,El Cajon,West
+48,United States,California,Encinitas,West
+49,United States,California,Escondido,West
+50,United States,California,Fairfield,West
+51,United States,California,Fresno,West
+52,United States,California,Hesperia,West
+53,United States,California,Huntington Beach,West
+54,United States,California,Inglewood,West
+55,United States,California,La Mesa,West
+56,United States,California,La Quinta,West
+57,United States,California,Laguna Niguel,West
+58,United States,California,Lake Elsinore,West
+59,United States,California,Lake Forest,West
+60,United States,California,Lakewood,West
+61,United States,California,Lancaster,West
+62,United States,California,Lodi,West
+63,United States,California,Long Beach,West
+64,United States,California,Los Angeles,West
+65,United States,California,Manteca,West
+66,United States,California,Mission Viejo,West
+67,United States,California,Modesto,West
+68,United States,California,Montebello,West
+69,United States,California,Moreno Valley,West
+70,United States,California,Morgan Hill,West
+71,United States,California,Murrieta,West
+72,United States,California,Oakland,West
+73,United States,California,Oceanside,West
+74,United States,California,Ontario,West
+75,United States,California,Oxnard,West
+76,United States,California,Pasadena,West
+77,United States,California,Pico Rivera,West
+78,United States,California,Pomona,West
+79,United States,California,Rancho Cucamonga,West
+80,United States,California,Redding,West
+81,United States,California,Redlands,West
+82,United States,California,Redondo Beach,West
+83,United States,California,Redwood City,West
+84,United States,California,Riverside,West
+85,United States,California,Roseville,West
+86,United States,California,Sacramento,West
+87,United States,California,Salinas,West
+88,United States,California,San Bernardino,West
+89,United States,California,San Clemente,West
+90,United States,California,San Diego,West
+91,United States,California,San Francisco,West
+92,United States,California,San Gabriel,West
+93,United States,California,San Jose,West
+94,United States,California,San Luis Obispo,West
+95,United States,California,San Mateo,West
+96,United States,California,Santa Ana,West
+97,United States,California,Santa Barbara,West
+98,United States,California,Santa Clara,West
+99,United States,California,Santa Maria,West
+100,United States,California,Stockton,West
+101,United States,California,Sunnyvale,West
+102,United States,California,Temecula,West
+103,United States,California,Thousand Oaks,West
+104,United States,California,Torrance,West
+105,United States,California,Vacaville,West
+106,United States,California,Vallejo,West
+107,United States,California,Visalia,West
+108,United States,California,Westminster,West
+109,United States,California,Whittier,West
+110,United States,California,Woodland,West
+111,United States,California,Yucaipa,West
+112,United States,Colorado,Arvada,West
+113,United States,Colorado,Aurora,West
+114,United States,Colorado,Broomfield,West
+115,United States,Colorado,Colorado Springs,West
+116,United States,Colorado,Commerce City,West
+117,United States,Colorado,Denver,West
+118,United States,Colorado,Englewood,West
+119,United States,Colorado,Fort Collins,West
+120,United States,Colorado,Greeley,West
+121,United States,Colorado,Littleton,West
+122,United States,Colorado,Longmont,West
+123,United States,Colorado,Louisville,West
+124,United States,Colorado,Loveland,West
+125,United States,Colorado,Parker,West
+126,United States,Colorado,Pueblo,West
+127,United States,Colorado,Thornton,West
+128,United States,Connecticut,Bristol,East
+129,United States,Connecticut,Danbury,East
+130,United States,Connecticut,Fairfield,East
+131,United States,Connecticut,Manchester,East
+132,United States,Connecticut,Meriden,East
+133,United States,Connecticut,Middletown,East
+134,United States,Connecticut,Milford,East
+135,United States,Connecticut,Norwich,East
+136,United States,Connecticut,Shelton,East
+137,United States,Connecticut,Waterbury,East
+138,United States,Delaware,Dover,East
+139,United States,Delaware,Newark,East
+140,United States,Delaware,Wilmington,East
+141,United States,District of Columbia,Washington,East
+142,United States,Florida,Apopka,South
+143,United States,Florida,Boca Raton,South
+144,United States,Florida,Boynton Beach,South
+145,United States,Florida,Coral Gables,South
+146,United States,Florida,Coral Springs,South
+147,United States,Florida,Daytona Beach,South
+148,United States,Florida,Delray Beach,South
+149,United States,Florida,Deltona,South
+150,United States,Florida,Fort Lauderdale,South
+151,United States,Florida,Hialeah,South
+152,United States,Florida,Hollywood,South
+153,United States,Florida,Homestead,South
+154,United States,Florida,Jacksonville,South
+155,United States,Florida,Jupiter,South
+156,United States,Florida,Kissimmee,South
+157,United States,Florida,Lakeland,South
+158,United States,Florida,Margate,South
+159,United States,Florida,Melbourne,South
+160,United States,Florida,Miami,South
+161,United States,Florida,Miramar,South
+162,United States,Florida,North Miami,South
+163,United States,Florida,Orlando,South
+164,United States,Florida,Ormond Beach,South
+165,United States,Florida,Palm Coast,South
+166,United States,Florida,Pembroke Pines,South
+167,United States,Florida,Pensacola,South
+168,United States,Florida,Plantation,South
+169,United States,Florida,Pompano Beach,South
+170,United States,Florida,Port Orange,South
+171,United States,Florida,Port Saint Lucie,South
+172,United States,Florida,Saint Petersburg,South
+173,United States,Florida,Sanford,South
+174,United States,Florida,Tallahassee,South
+175,United States,Florida,Tamarac,South
+176,United States,Florida,Tampa,South
+177,United States,Florida,West Palm Beach,South
+178,United States,Georgia,Athens,South
+179,United States,Georgia,Atlanta,South
+180,United States,Georgia,Columbus,South
+181,United States,Georgia,East Point,South
+182,United States,Georgia,Macon,South
+183,United States,Georgia,Marietta,South
+184,United States,Georgia,Roswell,South
+185,United States,Georgia,Sandy Springs,South
+186,United States,Georgia,Smyrna,South
+187,United States,Georgia,Warner Robins,South
+188,United States,Georgia,Woodstock,South
+189,United States,Idaho,Boise,West
+190,United States,Idaho,Caldwell,West
+191,United States,Idaho,Lewiston,West
+192,United States,Idaho,Meridian,West
+193,United States,Idaho,Pocatello,West
+194,United States,Idaho,Twin Falls,West
+195,United States,Illinois,Arlington Heights,Central
+196,United States,Illinois,Aurora,Central
+197,United States,Illinois,Bloomington,Central
+198,United States,Illinois,Bolingbrook,Central
+199,United States,Illinois,Buffalo Grove,Central
+200,United States,Illinois,Carol Stream,Central
+201,United States,Illinois,Champaign,Central
+202,United States,Illinois,Chicago,Central
+203,United States,Illinois,Danville,Central
+204,United States,Illinois,Decatur,Central
+205,United States,Illinois,Des Plaines,Central
+206,United States,Illinois,Elmhurst,Central
+207,United States,Illinois,Evanston,Central
+208,United States,Illinois,Frankfort,Central
+209,United States,Illinois,Freeport,Central
+210,United States,Illinois,Glenview,Central
+211,United States,Illinois,Highland Park,Central
+212,United States,Illinois,Naperville,Central
+213,United States,Illinois,Normal,Central
+214,United States,Illinois,Oak Park,Central
+215,United States,Illinois,Orland Park,Central
+216,United States,Illinois,Oswego,Central
+217,United States,Illinois,Palatine,Central
+218,United States,Illinois,Park Ridge,Central
+219,United States,Illinois,Peoria,Central
+220,United States,Illinois,Quincy,Central
+221,United States,Illinois,Rockford,Central
+222,United States,Illinois,Romeoville,Central
+223,United States,Illinois,Saint Charles,Central
+224,United States,Illinois,Skokie,Central
+225,United States,Illinois,Tinley Park,Central
+226,United States,Illinois,Wheeling,Central
+227,United States,Illinois,Woodstock,Central
+228,United States,Indiana,Bloomington,Central
+229,United States,Indiana,Columbus,Central
+230,United States,Indiana,Elkhart,Central
+231,United States,Indiana,Greenwood,Central
+232,United States,Indiana,Indianapolis,Central
+233,United States,Indiana,La Porte,Central
+234,United States,Indiana,Lafayette,Central
+235,United States,Indiana,Lawrence,Central
+236,United States,Indiana,Mishawaka,Central
+237,United States,Indiana,New Albany,Central
+238,United States,Indiana,New Castle,Central
+239,United States,Indiana,Noblesville,Central
+240,United States,Indiana,Portage,Central
+241,United States,Indiana,Richmond,Central
+242,United States,Indiana,South Bend,Central
+243,United States,Iowa,Burlington,Central
+244,United States,Iowa,Cedar Rapids,Central
+245,United States,Iowa,Des Moines,Central
+246,United States,Iowa,Dubuque,Central
+247,United States,Iowa,Iowa City,Central
+248,United States,Iowa,Marion,Central
+249,United States,Iowa,Urbandale,Central
+250,United States,Iowa,Waterloo,Central
+251,United States,Kansas,Garden City,Central
+252,United States,Kansas,Manhattan,Central
+253,United States,Kansas,Olathe,Central
+254,United States,Kansas,Overland Park,Central
+255,United States,Kansas,Wichita,Central
+256,United States,Kentucky,Bowling Green,South
+257,United States,Kentucky,Florence,South
+258,United States,Kentucky,Georgetown,South
+259,United States,Kentucky,Henderson,South
+260,United States,Kentucky,Louisville,South
+261,United States,Kentucky,Murray,South
+262,United States,Kentucky,Owensboro,South
+263,United States,Kentucky,Richmond,South
+264,United States,Louisiana,Bossier City,South
+265,United States,Louisiana,Kenner,South
+266,United States,Louisiana,Lafayette,South
+267,United States,Louisiana,Lake Charles,South
+268,United States,Louisiana,Monroe,South
+269,United States,Maine,Bangor,East
+270,United States,Maine,Lewiston,East
+271,United States,Maryland,Baltimore,East
+272,United States,Maryland,Clinton,East
+273,United States,Maryland,Columbia,East
+274,United States,Maryland,Gaithersburg,East
+275,United States,Maryland,Hagerstown,East
+276,United States,Maryland,Laurel,East
+277,United States,Maryland,Rockville,East
+278,United States,Massachusetts,Andover,East
+279,United States,Massachusetts,Beverly,East
+280,United States,Massachusetts,Cambridge,East
+281,United States,Massachusetts,Everett,East
+282,United States,Massachusetts,Franklin,East
+283,United States,Massachusetts,Holyoke,East
+284,United States,Massachusetts,Lawrence,East
+285,United States,Massachusetts,Leominster,East
+286,United States,Massachusetts,Lowell,East
+287,United States,Massachusetts,Malden,East
+288,United States,Massachusetts,Marlborough,East
+289,United States,Massachusetts,New Bedford,East
+290,United States,Massachusetts,Quincy,East
+291,United States,Massachusetts,Revere,East
+292,United States,Michigan,Ann Arbor,Central
+293,United States,Michigan,Canton,Central
+294,United States,Michigan,Dearborn,Central
+295,United States,Michigan,Dearborn Heights,Central
+296,United States,Michigan,Detroit,Central
+297,United States,Michigan,Grand Rapids,Central
+298,United States,Michigan,Holland,Central
+299,United States,Michigan,Jackson,Central
+300,United States,Michigan,Lansing,Central
+301,United States,Michigan,Lincoln Park,Central
+302,United States,Michigan,Midland,Central
+303,United States,Michigan,Mount Pleasant,Central
+304,United States,Michigan,Oak Park,Central
+305,United States,Michigan,Rochester Hills,Central
+306,United States,Michigan,Roseville,Central
+307,United States,Michigan,Royal Oak,Central
+308,United States,Michigan,Saginaw,Central
+309,United States,Michigan,Sterling Heights,Central
+310,United States,Michigan,Taylor,Central
+311,United States,Michigan,Trenton,Central
+312,United States,Michigan,Westland,Central
+313,United States,Minnesota,Apple Valley,Central
+314,United States,Minnesota,Coon Rapids,Central
+315,United States,Minnesota,Cottage Grove,Central
+316,United States,Minnesota,Eagan,Central
+317,United States,Minnesota,Lakeville,Central
+318,United States,Minnesota,Maple Grove,Central
+319,United States,Minnesota,Minneapolis,Central
+320,United States,Minnesota,Moorhead,Central
+321,United States,Minnesota,Rochester,Central
+322,United States,Minnesota,Roseville,Central
+323,United States,Minnesota,Saint Cloud,Central
+324,United States,Minnesota,Saint Paul,Central
+325,United States,Minnesota,Woodbury,Central
+326,United States,Mississippi,Gulfport,South
+327,United States,Mississippi,Hattiesburg,South
+328,United States,Mississippi,Jackson,South
+329,United States,Mississippi,Southaven,South
+330,United States,Missouri,Columbia,Central
+331,United States,Missouri,Gladstone,Central
+332,United States,Missouri,Independence,Central
+333,United States,Missouri,Jefferson City,Central
+334,United States,Missouri,Kirkwood,Central
+335,United States,Missouri,Saint Charles,Central
+336,United States,Missouri,Saint Louis,Central
+337,United States,Missouri,Saint Peters,Central
+338,United States,Missouri,Springfield,Central
+339,United States,Montana,Billings,West
+340,United States,Montana,Bozeman,West
+341,United States,Montana,Great Falls,West
+342,United States,Montana,Helena,West
+343,United States,Montana,Missoula,West
+344,United States,Nebraska,Fremont,Central
+345,United States,Nebraska,Grand Island,Central
+346,United States,Nebraska,Norfolk,Central
+347,United States,Nebraska,Omaha,Central
+348,United States,Nevada,Henderson,West
+349,United States,Nevada,Las Vegas,West
+350,United States,Nevada,North Las Vegas,West
+351,United States,Nevada,Reno,West
+352,United States,Nevada,Sparks,West
+353,United States,New Hampshire,Concord,East
+354,United States,New Hampshire,Dover,East
+355,United States,New Hampshire,Nashua,East
+356,United States,New Jersey,Atlantic City,East
+357,United States,New Jersey,Bayonne,East
+358,United States,New Jersey,Belleville,East
+359,United States,New Jersey,Bridgeton,East
+360,United States,New Jersey,Clifton,East
+361,United States,New Jersey,East Orange,East
+362,United States,New Jersey,Hackensack,East
+363,United States,New Jersey,Lakewood,East
+364,United States,New Jersey,Linden,East
+365,United States,New Jersey,Morristown,East
+366,United States,New Jersey,New Brunswick,East
+367,United States,New Jersey,Orange,East
+368,United States,New Jersey,Passaic,East
+369,United States,New Jersey,Paterson,East
+370,United States,New Jersey,Perth Amboy,East
+371,United States,New Jersey,Plainfield,East
+372,United States,New Jersey,Vineland,East
+373,United States,New Jersey,Westfield,East
+374,United States,New Mexico,Albuquerque,West
+375,United States,New Mexico,Carlsbad,West
+376,United States,New Mexico,Clovis,West
+377,United States,New Mexico,Farmington,West
+378,United States,New Mexico,Las Cruces,West
+379,United States,New Mexico,Rio Rancho,West
+380,United States,New Mexico,Santa Fe,West
+381,United States,New York,Auburn,East
+382,United States,New York,Buffalo,East
+383,United States,New York,Freeport,East
+384,United States,New York,Hempstead,East
+385,United States,New York,Jamestown,East
+386,United States,New York,Lindenhurst,East
+387,United States,New York,Long Beach,East
+388,United States,New York,Mount Vernon,East
+389,United States,New York,New Rochelle,East
+390,United States,New York,New York City,East
+391,United States,New York,Niagara Falls,East
+392,United States,New York,Oceanside,East
+393,United States,New York,Rochester,East
+394,United States,New York,Rome,East
+395,United States,New York,Troy,East
+396,United States,New York,Utica,East
+397,United States,New York,Watertown,East
+398,United States,New York,Yonkers,East
+399,United States,North Carolina,Asheville,South
+400,United States,North Carolina,Burlington,South
+401,United States,North Carolina,Cary,South
+402,United States,North Carolina,Chapel Hill,South
+403,United States,North Carolina,Charlotte,South
+404,United States,North Carolina,Concord,South
+405,United States,North Carolina,Durham,South
+406,United States,North Carolina,Fayetteville,South
+407,United States,North Carolina,Gastonia,South
+408,United States,North Carolina,Goldsboro,South
+409,United States,North Carolina,Greensboro,South
+410,United States,North Carolina,Greenville,South
+411,United States,North Carolina,Hickory,South
+412,United States,North Carolina,Jacksonville,South
+413,United States,North Carolina,Monroe,South
+414,United States,North Carolina,Raleigh,South
+415,United States,North Carolina,Thomasville,South
+416,United States,North Carolina,Wilmington,South
+417,United States,North Carolina,Wilson,South
+418,United States,North Dakota,Fargo,Central
+419,United States,Ohio,Akron,East
+420,United States,Ohio,Bowling Green,East
+421,United States,Ohio,Cincinnati,East
+422,United States,Ohio,Cleveland,East
+423,United States,Ohio,Columbus,East
+424,United States,Ohio,Cuyahoga Falls,East
+425,United States,Ohio,Dublin,East
+426,United States,Ohio,Elyria,East
+427,United States,Ohio,Fairfield,East
+428,United States,Ohio,Grove City,East
+429,United States,Ohio,Hamilton,East
+430,United States,Ohio,Kent,East
+431,United States,Ohio,Lakewood,East
+432,United States,Ohio,Lancaster,East
+433,United States,Ohio,Lorain,East
+434,United States,Ohio,Marion,East
+435,United States,Ohio,Mason,East
+436,United States,Ohio,Medina,East
+437,United States,Ohio,Mentor,East
+438,United States,Ohio,Newark,East
+439,United States,Ohio,Parma,East
+440,United States,Ohio,Springfield,East
+441,United States,Ohio,Toledo,East
+442,United States,Ohio,Troy,East
+443,United States,Oklahoma,Broken Arrow,Central
+444,United States,Oklahoma,Edmond,Central
+445,United States,Oklahoma,Lawton,Central
+446,United States,Oklahoma,Muskogee,Central
+447,United States,Oklahoma,Norman,Central
+448,United States,Oklahoma,Oklahoma City,Central
+449,United States,Oklahoma,Tulsa,Central
+450,United States,Oregon,Eugene,West
+451,United States,Oregon,Gresham,West
+452,United States,Oregon,Hillsboro,West
+453,United States,Oregon,Medford,West
+454,United States,Oregon,Portland,West
+455,United States,Oregon,Redmond,West
+456,United States,Oregon,Salem,West
+457,United States,Oregon,Springfield,West
+458,United States,Oregon,Tigard,West
+459,United States,Pennsylvania,Allentown,East
+460,United States,Pennsylvania,Altoona,East
+461,United States,Pennsylvania,Bethlehem,East
+462,United States,Pennsylvania,Chester,East
+463,United States,Pennsylvania,Lancaster,East
+464,United States,Pennsylvania,Philadelphia,East
+465,United States,Pennsylvania,Reading,East
+466,United States,Pennsylvania,York,East
+467,United States,Rhode Island,Cranston,East
+468,United States,Rhode Island,Providence,East
+469,United States,Rhode Island,Warwick,East
+470,United States,Rhode Island,Woonsocket,East
+471,United States,South Carolina,Columbia,South
+472,United States,South Carolina,Florence,South
+473,United States,South Carolina,Mount Pleasant,South
+474,United States,South Carolina,North Charleston,South
+475,United States,South Carolina,Rock Hill,South
+476,United States,South Carolina,Summerville,South
+477,United States,South Dakota,Aberdeen,Central
+478,United States,South Dakota,Rapid City,Central
+479,United States,South Dakota,Sioux Falls,Central
+480,United States,Tennessee,Bartlett,South
+481,United States,Tennessee,Bristol,South
+482,United States,Tennessee,Chattanooga,South
+483,United States,Tennessee,Clarksville,South
+484,United States,Tennessee,Columbia,South
+485,United States,Tennessee,Franklin,South
+486,United States,Tennessee,Hendersonville,South
+487,United States,Tennessee,Jackson,South
+488,United States,Tennessee,Johnson City,South
+489,United States,Tennessee,Knoxville,South
+490,United States,Tennessee,Lebanon,South
+491,United States,Tennessee,Memphis,South
+492,United States,Tennessee,Murfreesboro,South
+493,United States,Tennessee,Nashville,South
+494,United States,Tennessee,Smyrna,South
+495,United States,Texas,Abilene,Central
+496,United States,Texas,Allen,Central
+497,United States,Texas,Amarillo,Central
+498,United States,Texas,Arlington,Central
+499,United States,Texas,Austin,Central
+500,United States,Texas,Baytown,Central
+501,United States,Texas,Beaumont,Central
+502,United States,Texas,Bedford,Central
+503,United States,Texas,Brownsville,Central
+504,United States,Texas,Bryan,Central
+505,United States,Texas,Carrollton,Central
+506,United States,Texas,Cedar Hill,Central
+507,United States,Texas,College Station,Central
+508,United States,Texas,Conroe,Central
+509,United States,Texas,Coppell,Central
+510,United States,Texas,Corpus Christi,Central
+511,United States,Texas,Dallas,Central
+512,United States,Texas,Deer Park,Central
+513,United States,Texas,Edinburg,Central
+514,United States,Texas,El Paso,Central
+515,United States,Texas,Fort Worth,Central
+516,United States,Texas,Frisco,Central
+517,United States,Texas,Garland,Central
+518,United States,Texas,Grand Prairie,Central
+519,United States,Texas,Grapevine,Central
+520,United States,Texas,Haltom City,Central
+521,United States,Texas,Harlingen,Central
+522,United States,Texas,Houston,Central
+523,United States,Texas,Huntsville,Central
+524,United States,Texas,Irving,Central
+525,United States,Texas,Keller,Central
+526,United States,Texas,La Porte,Central
+527,United States,Texas,Laredo,Central
+528,United States,Texas,League City,Central
+529,United States,Texas,Lubbock,Central
+530,United States,Texas,Mansfield,Central
+531,United States,Texas,Mcallen,Central
+532,United States,Texas,Mesquite,Central
+533,United States,Texas,Missouri City,Central
+534,United States,Texas,Odessa,Central
+535,United States,Texas,Pasadena,Central
+536,United States,Texas,Pearland,Central
+537,United States,Texas,Pharr,Central
+538,United States,Texas,Plano,Central
+539,United States,Texas,Port Arthur,Central
+540,United States,Texas,Richardson,Central
+541,United States,Texas,Round Rock,Central
+542,United States,Texas,San Angelo,Central
+543,United States,Texas,San Antonio,Central
+544,United States,Texas,San Marcos,Central
+545,United States,Texas,Texas City,Central
+546,United States,Texas,The Colony,Central
+547,United States,Texas,Tyler,Central
+548,United States,Texas,Waco,Central
+549,United States,Utah,Draper,West
+550,United States,Utah,Layton,West
+551,United States,Utah,Lehi,West
+552,United States,Utah,Logan,West
+553,United States,Utah,Murray,West
+554,United States,Utah,Orem,West
+555,United States,Utah,Pleasant Grove,West
+556,United States,Utah,Provo,West
+557,United States,Utah,Salt Lake City,West
+558,United States,Utah,West Jordan,West
+559,United States,Vermont,Burlington,East
+560,United States,Virginia,Alexandria,South
+561,United States,Virginia,Arlington,South
+562,United States,Virginia,Charlottesville,South
+563,United States,Virginia,Chesapeake,South
+564,United States,Virginia,Hampton,South
+565,United States,Virginia,Harrisonburg,South
+566,United States,Virginia,Newport News,South
+567,United States,Virginia,Richmond,South
+568,United States,Virginia,Salem,South
+569,United States,Virginia,Springfield,South
+570,United States,Virginia,Suffolk,South
+571,United States,Virginia,Virginia Beach,South
+572,United States,Virginia,Waynesboro,South
+573,United States,Washington,Auburn,West
+574,United States,Washington,Bellevue,West
+575,United States,Washington,Bellingham,West
+576,United States,Washington,Covington,West
+577,United States,Washington,Des Moines,West
+578,United States,Washington,Edmonds,West
+579,United States,Washington,Everett,West
+580,United States,Washington,Kent,West
+581,United States,Washington,Longview,West
+582,United States,Washington,Marysville,West
+583,United States,Washington,Olympia,West
+584,United States,Washington,Pasco,West
+585,United States,Washington,Redmond,West
+586,United States,Washington,Renton,West
+587,United States,Washington,Seattle,West
+588,United States,Washington,Spokane,West
+589,United States,Washington,Vancouver,West
+590,United States,West Virginia,Wheeling,East
+591,United States,Wisconsin,Appleton,Central
+592,United States,Wisconsin,Eau Claire,Central
+593,United States,Wisconsin,Franklin,Central
+594,United States,Wisconsin,Green Bay,Central
+595,United States,Wisconsin,Kenosha,Central
+596,United States,Wisconsin,La Crosse,Central
+597,United States,Wisconsin,Madison,Central
+598,United States,Wisconsin,Milwaukee,Central
+599,United States,Wisconsin,Sheboygan,Central
+600,United States,Wisconsin,Superior,Central
+601,United States,Wisconsin,Waukesha,Central
+602,United States,Wisconsin,Wausau,Central
+603,United States,Wisconsin,West Allis,Central
+604,United States,Wyoming,Cheyenne,West
