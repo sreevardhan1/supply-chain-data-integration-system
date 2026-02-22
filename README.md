@@ -63,10 +63,12 @@ Streamlit Dashboard
    streamlit run dashboard/app.py
 
 
-## Dashboard Preview
-![alt text](image.png)
+## Dashboard Screenshots Preview
 
-![alt text](image-1.png)
+<p align="center">
+  <img src="assets/monthly_sales_trend.png" width="800"><br><br>
+  <img src="assets/state_sales_map.png" width="800">
+</p>
 
 
 ## Future Enhancements
