@@ -1,5 +1,9 @@
 # Supply Chain Data Integration System
 
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![BigQuery](https://img.shields.io/badge/BigQuery-Data%20Warehouse-yellow)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 ## Overview
 
