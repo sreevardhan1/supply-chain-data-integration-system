@@ -1,346 +1,584 @@
-import streamlit as st
-from google.cloud import bigquery
-import pandas as pd
-import os
-# Enhancing UI Theme using plotly
-import plotly.express as px
+"""
+Enterprise Supply Chain Dashboard
+----------------------------------
+• Glassmorphism UI
+• Gradient Theme
+• USA State Map
+• Single Screen Layout
+• Optimized BigQuery Usage
+"""
 
-# ----------------------------------------
-# Page Config
-# ----------------------------------------
+import os
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from google.cloud import bigquery
+
+
+# =====================================================
+# PAGE CONFIG
+# =====================================================
 st.set_page_config(
-    page_title="Supply Chain Dashboard",
-    page_icon="📦",
-    layout="wide"
+    page_title="Enterprise Supply Chain Dashboard",
+    layout="wide",
+    page_icon="📊"
 )
 
-st.title("📦 Supply Chain Data Integration Dashboard")
-st.markdown("Real-time analytics powered by BigQuery")
+st.markdown("""
+<h1 style="
+    text-align:center;
+    align-content: center;
+    font-size:46px;
+    font-weight:800;
+    margin-bottom:28px;
+    letter-spacing:1px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: white;
+    display: inline-block;
+">
+    📊 Enterprise Supply Chain Dashboard
+</h1>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
-.big-font {
-    font-size:22px !important;
-    font-weight:600;
+* {
+    transition: all 0.2s ease-in-out;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ----------------------------------------
-# BigQuery Client
-# ----------------------------------------
-client = bigquery.Client(project=os.getenv("GCP_PROJECT_ID"))
+# =====================================================
+# GLASS + GRADIENT THEME
+# =====================================================
+st.markdown("""
+<style>
 
-# ----------------------------------------
-# Data Loading Functions
-# ----------------------------------------
-@st.cache_data
-def load_sales_summary():
+html, body, [class*="css"] {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+.block-container {
+    padding-top: 2rem;    
+    padding-bottom: 0rem;
+    padding-left : 2.5rem;
+    padding-right : 2.5rem;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 15px;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+div[data-testid="metric-container"] {
+    background: rgba(255,255,255,0.12);
+    border-radius: 15px;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+div[data-testid="metric-container"] {
+    font-size:18px !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Sub -heading CSS
+st.markdown("""
+<style>
+.section-title {
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:6px;
+    color:#d0e6ff;
+    letter-spacing:0.5px;
+}
+
+.section-divider {
+    height:2px;
+    width:120px;
+    background: linear-gradient(90deg,#00f5ff,#00ff88);
+    margin-bottom:12px;
+    border-radius:4px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+# =====================================================
+# BIGQUERY CLIENT
+# =====================================================
+@st.cache_resource
+def get_client():
+    return bigquery.Client(project=os.getenv("GCP_PROJECT_ID"))
+
+client = get_client()
+
+# =====================================================
+# LOAD DATA
+# =====================================================
+@st.cache_data(ttl=600)
+def load_sales():
     query = """
-    SELECT *
-    FROM `supply-chain-dw.supply_chain_dw.vw_sales_summary`
-    ORDER BY year, month
+    SELECT year,
+           month,
+           region,
+           category,
+           total_sales,
+           total_profit,
+           total_quantity
+    FROM `supply-chain-dw.supply_chain_dw.vw_sales_mart`
     """
     return client.query(query).to_dataframe()
 
-@st.cache_data
-def load_category_data():
+# =====================================================
+# LOAD GEO SALES (FOR MAP)
+# =====================================================
+@st.cache_data(ttl=600)
+def load_geo_sales():
     query = """
-    SELECT *
-    FROM `supply-chain-dw.supply_chain_dw.vw_product_performance`
+    SELECT year,
+           month,
+           country,
+           region,
+           state,
+           city,
+           total_sales,
+           total_profit,
+           total_quantity
+    FROM `supply-chain-dw.supply_chain_dw.vw_geo_sales`
     """
     return client.query(query).to_dataframe()
 
-@st.cache_data
-def load_region_data():
+@st.cache_data(ttl=600)
+def load_vendor():
     query = """
-    SELECT *
-    FROM `supply-chain-dw.supply_chain_dw.vw_region_sales`
+    SELECT vendor_name, total_sales, avg_lead_time
+    FROM `supply-chain-dw.supply_chain_dw.vw_vendor_performance`
     """
     return client.query(query).to_dataframe()
 
-@st.cache_data
+@st.cache_data(ttl=600)
 def load_lead_time():
     query = """
-    SELECT *
-    FROM `supply-chain-dw.supply_chain_dw.vw_lead_time_analysis`
+    SELECT year,
+           region,
+           category,
+           avg_lead_time
+    FROM `supply-chain-dw.supply_chain_dw.vw_lead_time_mart`
     """
     return client.query(query).to_dataframe()
 
-@st.cache_data
-def load_top_products(selected_year):
+df_sales = load_sales()
+df_vendor = load_vendor()
+df_geo = load_geo_sales()
+df_lead = load_lead_time()
 
-    query = """
-    SELECT
-        p.product_name,
-        SUM(f.sales) AS total_sales,
-        SUM(f.profit) AS total_profit
-    FROM `supply-chain-dw.supply_chain_dw.fact_orders` f
-    JOIN `supply-chain-dw.supply_chain_dw.dim_product` p
-        ON f.product_key = p.product_key
-    JOIN `supply-chain-dw.supply_chain_dw.dim_date` d
-        ON f.date_key = d.date_key
-    WHERE d.year = @year
-    GROUP BY p.product_name
-    ORDER BY total_sales DESC
-    LIMIT 5
-    """
+# =====================================================
+# FILTER BAR
+# =====================================================
+f1, f2, f3, f4 = st.columns(4)
 
-    job_config = bigquery.QueryJobConfig(
-        query_parameters=[
-            bigquery.ScalarQueryParameter("year", "INT64", selected_year)
-        ]
+with f1:
+    selected_year = st.selectbox("Year", sorted(df_sales.year.unique()))
+
+with f2:
+    metric_choice = st.selectbox("Metric", ["Sales", "Profit"])
+
+with f3:
+    selected_region = st.selectbox(
+        "Region",
+        ["All"] + sorted(df_sales.region.unique())
     )
 
-    return client.query(query, job_config=job_config).to_dataframe()
+with f4:
+    selected_category = st.selectbox(
+        "Category",
+        ["All"] + sorted(df_sales.category.unique())
+    )
 
+metric_column = "total_sales" if metric_choice == "Sales" else "total_profit"
 
-@st.cache_data
-def load_state_sales(selected_year):
-    query = f"""
-    SELECT *
-    FROM `supply-chain-dw.supply_chain_dw.vw_state_sales`
-    WHERE year = {selected_year}
-    """
-    return client.query(query).to_dataframe()
+# =====================================================
+# FILTER DATA
+# =====================================================
+# For - Monthly Sales Trend
+df = df_sales[df_sales.year == selected_year]
 
+if selected_region != "All":
+    df = df[df.region == selected_region]
 
-# ----------------------------------------
-# Load Data
-# ----------------------------------------
-with st.spinner("Loading Data..."):
-    df_sales = load_sales_summary()
-    df_category = load_category_data()
-    df_region = load_region_data()
-    df_lead = load_lead_time()
+if selected_category != "All":
+    df = df[df.category == selected_category]
 
+# FOR : Geo filtering plot(MAP)
 
-# ----------------------------------------
-# Sidebar Filters
-# ----------------------------------------
-st.sidebar.header("Filters")
+df_geo_filtered = df_geo[df_geo.year == selected_year]
 
-years = sorted(df_sales["year"].unique())
-selected_year = st.sidebar.selectbox("Select Year", years)
-selected_year = int(selected_year)      # json to python int
+if selected_region != "All":
+    df_geo_filtered = df_geo_filtered[
+        df_geo_filtered.region == selected_region
+    ]
 
-df_filtered = df_sales[df_sales["year"] == selected_year]
+geo_metric = "total_sales" if metric_choice == "Sales" else "total_profit"
 
-# Top-Products of selected year
-df_top_products = load_top_products(selected_year)
+df_state = (
+    df_geo_filtered
+    .groupby("state")[geo_metric]
+    .sum()
+    .reset_index()
+)
 
+# For: Lead_time_Days gauge
+df_lead_filtered = df_lead[df_lead.year == selected_year]
 
-df_state = load_state_sales(selected_year)
+if selected_region != "All":
+    df_lead_filtered = df_lead_filtered[
+        df_lead_filtered.region == selected_region
+    ]
 
-# ----------------------------------------
+if selected_category != "All":
+    df_lead_filtered = df_lead_filtered[
+        df_lead_filtered.category == selected_category
+    ]
+
+# =====================================================
 # KPI SECTION
-# ----------------------------------------
+# =====================================================
+total_sales = df.total_sales.sum()
+total_profit = df.total_profit.sum()
+total_quantity = df.total_quantity.sum()
+profit_margin = (total_profit / total_sales * 100) if total_sales else 0
 
-# KPI values
-total_sales = df_filtered["total_sales"].sum()
-total_profit = df_filtered["total_profit"].sum()
-total_quantity = df_filtered["total_quantity"].sum()
-profit_margin = (total_profit / total_sales) * 100 if total_sales != 0 else 0
+k1, k2, k3, k4 = st.columns(4)
 
-# -----------------------------
-# Year-over-Year Growth
-# -----------------------------
+k1.metric("Total Sales", f"${total_sales:,.0f}")
+k2.metric("Total Profit", f"${total_profit:,.0f}")
+k3.metric("Quantity", f"{int(total_quantity):,}")
+k4.metric("Profit Margin", f"{profit_margin:.2f}%")
+
+# st.divider()
+
+st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
+
+# =====================================================
+# CHART 1: MONTHLY TREND (YoY Comparison)
+# =====================================================
+
+import plotly.graph_objects as go
+
+# Current Year Data
+df_current = df_sales[df_sales.year == selected_year]
+
+if selected_region != "All":
+    df_current = df_current[df_current.region == selected_region]
+
+if selected_category != "All":
+    df_current = df_current[df_current.category == selected_category]
+
+df_current["date"] = pd.to_datetime(
+    df_current["year"].astype(str) + "-" +
+    df_current["month"].astype(str) + "-01"
+)
+
+df_current_monthly = (
+    df_current.groupby("date")[metric_column]
+    .sum()
+    .reset_index()
+)
+
+# Previous Year Data
 previous_year = selected_year - 1
+df_previous = df_sales[df_sales.year == previous_year]
 
-df_prev = df_sales[df_sales["year"] == previous_year]
+if selected_region != "All":
+    df_previous = df_previous[df_previous.region == selected_region]
 
-current_sales = df_filtered["total_sales"].sum()
-previous_sales = df_prev["total_sales"].sum()
+if selected_category != "All":
+    df_previous = df_previous[df_previous.category == selected_category]
 
-if previous_sales > 0:
-    yoy_growth = ((current_sales - previous_sales) / previous_sales) * 100
-else:
-    yoy_growth = 0
-
-
-# ----------------------
-# Summary Card
-# ----------------------
-st.success(
-    f"In {selected_year},\n"
-    f"total sales reached ${total_sales:,.0f}\n"
-    f"with a profit margin of {profit_margin:.2f}%. \n"
-    f"Year-over-year growth stands at {yoy_growth:.2f}%."
+df_previous["date"] = pd.to_datetime(
+    df_previous["year"].astype(str) + "-" +
+    df_previous["month"].astype(str) + "-01"
 )
 
-# -------------------
-# KPI Cards
-col1, col2, col3, col4, col5 = st.columns(5)
-
-col1.metric("💰 Total Sales", f"${total_sales:,.2f}")
-col2.metric("📈 Total Profit", f"${total_profit:,.2f}")
-col3.metric("📦 Total Quantity", f"{int(total_quantity):,}")
-col4.metric("📊 Profit Margin", f"{profit_margin:.2f}%")
-col5.metric( "📅 YoY Growth", f"{yoy_growth:.2f}%", delta=f"{yoy_growth:.2f}%", delta_color="normal")
-
-st.divider()
-
-
-# ----------------------------------------
-# Monthly Sales Trend
-# ----------------------------------------
-st.subheader("📈 Monthly Sales Trend")
-
-df_filtered = df_filtered.copy()
-df_filtered.loc[:, "date"] = pd.to_datetime(
-    df_filtered["year"].astype(str) + "-" +
-    df_filtered["month"].astype(str) + "-01"
+df_previous_monthly = (
+    df_previous.groupby("date")[metric_column]
+    .sum()
+    .reset_index()
 )
 
-df_filtered = df_filtered.sort_values("date")
-
-# st.line_chart(df_filtered.set_index("date")["total_sales"])
-
-# plotly
-fig = px.line(
-    df_filtered,
-    x="date",
-    y="total_sales",
-    markers=True,
-    title=f"Monthly Sales Trend - {selected_year}",
+# Align previous year months to current year for overlay
+df_previous_monthly["date"] = df_previous_monthly["date"].apply(
+    lambda x: x.replace(year=selected_year)
 )
 
-fig.update_layout(
-    xaxis_title="Month",
-    yaxis_title="Total Sales",
-    template="plotly_dark"
+# Create Figure
+fig_trend = go.Figure()
+
+# Current Year Line
+fig_trend.add_trace(go.Scatter(
+    x=df_current_monthly["date"],
+    y=df_current_monthly[metric_column],
+    mode="lines+markers",
+    name=f"{selected_year}",
+    line=dict(shape="spline", width=3, color="#00f5ff"),
+    fill="tozeroy",
+    opacity=0.5,
+    hovertemplate="<b>Date:</b> %{x|%b %Y}<br><b>Value:</b> %{y:$,.0f}"
+))
+
+# Previous Year Line
+fig_trend.add_trace(go.Scatter(
+    x=df_previous_monthly["date"],
+    y=df_previous_monthly[metric_column],
+    mode="lines+markers",
+    name=f"{previous_year}",
+    line=dict(shape="spline", width=2, dash="dash", color="#00ff88"),
+    hovertemplate="<b>Date:</b> %{x|%b %Y}<br><b>Value:</b> %{y:$,.0f}"
+))
+
+fig_trend.update_layout(
+    template="plotly_dark",
+    height=220,
+    margin=dict(l=5, r=5, t=30, b=5),
+    hovermode="x unified",
+    transition_duration=600,
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    )
 )
 
-st.plotly_chart(fig, width="stretch")
+# =====================================================
+# CHART 2: CATEGORY DISTRIBUTION 
+# =====================================================
 
-st.divider()
+import plotly.graph_objects as go
 
-# ----------------------------------------
-# Category & Region Layout
-# ----------------------------------------
-colA, colB = st.columns(2)
-
-with colA:
-    st.subheader("📊 Sales by Category")
-    st.bar_chart(df_category.set_index("category")["total_sales"])
-
-with colB:
-    st.subheader("🌍 Regional Sales")
-    st.bar_chart(df_region.set_index("region")["total_sales"])
-
-st.divider()
-
-# ----------------------------------------
-# Lead Time Section
-# ----------------------------------------
-# sorting Data
-df_lead_sorted = df_lead.sort_values("avg_lead_time", ascending=False)
-
-st.subheader("⏳ Average Lead Time by Category")
-# st.bar_chart(df_lead.set_index("category")["avg_lead_time"])
-fig_lead = px.bar(
-    df_lead_sorted,
-    x="category",
-    y="avg_lead_time",
-    color="avg_lead_time",
-    color_continuous_scale= ["#161B22", "#00BFA6"],
-    title="Average Delivery Lead Time by Product Category",
-    text_auto=".2f"
+# Aggregate Category Data
+df_cat = (
+    df.groupby("category")[metric_column]
+    .sum()
+    .reset_index()
 )
 
-fig_lead.update_layout(
-    xaxis_title="Category",
-    yaxis_title="Average Lead Time (Days)",
-    template="plotly_dark"
-    # coloraxis_showscale = False
+total_value = df_cat[metric_column].sum()
+
+fig_donut = go.Figure()
+
+fig_donut.add_trace(go.Pie(
+    labels=df_cat["category"],
+    values=df_cat[metric_column],
+    hole=0.6,
+    pull=[0.03]*len(df_cat),
+    textinfo="percent",
+    textfont=dict(size=13),
+    hovertemplate="<b>%{label}</b><br>Value: %{value:$,.0f}<br>Share: %{percent}",
+))
+
+# Add Center Metric
+fig_donut.add_annotation(
+    text=f"${total_value:,.0f}",
+    x=0.5, y=0.5,
+    font=dict(size=18, color="white"),
+    showarrow=False
 )
 
-st.plotly_chart(fig_lead, width="stretch")
-
-# -- Interpretation
-slowest_category = df_lead_sorted.iloc[0]["category"]
-
-st.info(f"⚠️ {slowest_category} has the highest average delivery delay. Consider supply chain optimization.")
-
-
-st.divider()
-# ----------------------------------
-# Bar Chart of Top Products
-# ----------------------------------
-st.subheader("🏆 Top 5 Products by Sales")
-
-fig_top = px.bar(
-    df_top_products,
-    x="total_sales",
-    y="product_name",
-    orientation="h",
-    title=f"Top 5 Products - {selected_year}",
-    template="plotly_dark"
+fig_donut.update_layout(
+    template="plotly_dark",
+    height=220,
+    margin=dict(l=5, r=5, t=30, b=5),
+    showlegend=True,
+    legend=dict(
+        orientation="v",
+        yanchor="middle",
+        y=0.5,
+        xanchor="left",
+        x=1.02
+    ),
+    transition_duration=600
 )
 
-fig_top.update_layout(
-    xaxis_title="Total Sales",
-    yaxis_title="Product",
-)
-
-st.plotly_chart(fig_top, width="stretch")
-
-
-
+# =====================================================
+# CHART 3: USA STATE MAP
+# =====================================================
 us_state_abbrev = {
     "Alabama": "AL", "Alaska": "AK", "Arizona": "AZ", "Arkansas": "AR",
     "California": "CA", "Colorado": "CO", "Connecticut": "CT",
-    "Delaware": "DE", "District of Columbia": "DC", "Florida": "FL", "Georgia": "GA",
-    "Hawaii": "HI", "Idaho": "ID", "Illinois": "IL",
-    "Indiana": "IN", "Iowa": "IA", "Kansas": "KS",
-    "Kentucky": "KY", "Louisiana": "LA", "Maine": "ME",
-    "Maryland": "MD", "Massachusetts": "MA", "Michigan": "MI",
-    "Minnesota": "MN", "Mississippi": "MS", "Missouri": "MO",
-    "Montana": "MT", "Nebraska": "NE", "Nevada": "NV",
-    "New Hampshire": "NH", "New Jersey": "NJ",
-    "New Mexico": "NM", "New York": "NY",
-    "North Carolina": "NC", "North Dakota": "ND",
-    "Ohio": "OH", "Oklahoma": "OK", "Oregon": "OR",
-    "Pennsylvania": "PA", "Rhode Island": "RI",
-    "South Carolina": "SC", "South Dakota": "SD",
-    "Tennessee": "TN", "Texas": "TX", "Utah": "UT",
-    "Vermont": "VT", "Virginia": "VA",
-    "Washington": "WA", "West Virginia": "WV",
-    "Wisconsin": "WI", "Wyoming": "WY"
+    "Delaware": "DE", "Florida": "FL", "Georgia": "GA",
+    "Illinois": "IL", "New York": "NY", "Texas": "TX"
+    # Add all states here
 }
 
-st.divider()
-# ------------------------------------
-# Sate-wise sales plot
-# -----------------------------------
+df_state["state_code"] = df_state["state"].map(us_state_abbrev)
 
-st.subheader("🗺️ Sales by State")
+fig_map = px.choropleth(
+    df_state,
+    locations="state_code",
+    locationmode="USA-states",
+    color=geo_metric,
+    scope="usa",
+    template="plotly_dark"
+)
 
-df_state = load_state_sales(selected_year)
+fig_map.update_layout(
+    height=230,
+    margin=dict(l=5,r=5,t=30,b=5),
+    geo = dict(
+        bgcolor = "rgba(0,0,0,0)",
+        showlakes = True,
+        lakecolor = 'rgb(20,20,30)'
+    ),
+    transition_duration = 600
+)
+fig_map.update_traces(
+    hovertemplate="<b>State:</b> %{location}<br><b>Value:</b> %{z:$,.0f}"
+)
 
-if not df_state.empty:
 
-    df_state["state_code"] = df_state["state"].map(us_state_abbrev)
+# =====================================================
+# CHART 4: REGION
+# =====================================================
 
-    fig_map = px.choropleth(
-        df_state,
-        locations="state_code",
-        locationmode="USA-states",
-        color="total_sales",
-        scope="usa",
-        color_continuous_scale="Blues",
-        title=f"State-wise Sales - {selected_year}"
-    )
+df_region = (
+    df.groupby("region")[metric_column]
+    .sum()
+    .reset_index()
+    .sort_values(metric_column, ascending=False)
+)
 
-    fig_map.update_layout(template="plotly_dark")
+fig_region = px.bar(
+    df_region,
+    x="region",
+    y=metric_column,
+    text=metric_column,
+    color=metric_column,
+    color_continuous_scale="Blues"
+)
 
-    st.plotly_chart(fig_map, width="stretch")
+fig_region.update_traces(
+    texttemplate="%{text:$,.0f}",
+    textposition="outside",
+    marker_line_color="white",
+    marker_line_width=1.5
+)
 
-else:
-    st.warning("No state-level data available for selected year.")
+fig_region.update_layout(
+    template="plotly_dark",
+    height=230,
+    margin=dict(l=5, r=5, t=30, b=5),
+    showlegend=False,
+    yaxis_title=metric_choice,
+    xaxis_title="Region",
+    transition_duration=600
+)
 
-# print(df_state[df_state["state_code"].isnull()])
+# =====================================================
+# CHART 5: VENDOR SALES
+# =====================================================
+fig_vendor_sales = px.bar(
+    df_vendor.sort_values("total_sales", ascending=True),
+    x="total_sales",
+    y="vendor_name",
+    orientation="h",
+    template="plotly_dark",
+    color="total_sales",
+    color_continuous_scale="blues"
+)
 
-# markdown string
-st.markdown("---")
-st.caption("Built using BigQuery + Streamlit | Supply Chain Data Integration Project")
+fig_vendor_sales.update_layout(
+    height=230,
+    margin=dict(l=5,r=5,t=30,b=5),
+    hovermode = "y unified",
+    transition_duration = 600
+)
+
+fig_vendor_sales.update_traces(opacity=0.9)
+
+
+# =====================================================
+# CHART 6: VENDOR LEAD TIME
+# =====================================================
+import plotly.graph_objects as go
+
+avg_lead = df_lead_filtered["avg_lead_time"].mean()
+
+fig_vendor_lead = go.Figure(go.Indicator(
+    mode="gauge+number",
+    value=avg_lead,
+    number={'suffix': " days"},
+    # title={'text': "Avg Vendor Lead Time"},
+    gauge={
+        'axis': {'range': [0, 10]},
+        'bar': {'color': "#00f5ff"},
+        'steps': [
+            {'range': [0, 4], 'color': "#00ff88"},
+            {'range': [4, 7], 'color': "#ffcc00"},
+            {'range': [7, 10], 'color': "#ff4d4d"}
+        ],
+        'threshold': {
+            'line': {'color': "white", 'width': 4},
+            'thickness': 0.75,
+            'value': 5
+        }
+    }
+))
+
+fig_vendor_lead.update_layout(
+    template="plotly_dark",
+    height=220,
+    margin=dict(l=5,r=5,t=30,b=5),
+    # transition_duration = 800
+)
+
+# =====================================================
+# ENTERPRISE 3x2 GRID (NO SCROLL)
+# =====================================================
+r1c1, r1c2, r1c3 = st.columns(3)
+r2c1, r2c2, r2c3 = st.columns(3)
+
+with r1c1:
+    st.markdown('<div class="section-title">📈 Monthly Sales Trend</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_trend, use_container_width=True)
+
+with r1c2:
+    st.markdown('<div class="section-title">🗂 Category Distribution</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_donut, use_container_width=True)
+
+with r1c3:
+    st.markdown('<div class="section-title">🗺 State-wise Sales</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_map, use_container_width=True)
+
+with r2c1:
+    st.markdown('<div class="section-title">🌍 Region Performance</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_region, use_container_width=True)
+
+with r2c2:
+    st.markdown('<div class="section-title">🏢 Vendor Sales Ranking</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_vendor_sales, use_container_width=True)
+
+with r2c3:
+    st.markdown('<div class="section-title">⏱ Average Vendor Lead Time</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_vendor_lead, use_container_width=True)
